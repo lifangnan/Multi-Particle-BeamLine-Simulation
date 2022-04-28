@@ -4,7 +4,8 @@
 #include <cuda_profiler_api.h>
 #include <iostream>
 #include <iterator>
-#include <unistd.h>
+// #include <unistd.h>
+#include <windows.h>
 #include "beam.h"
 #include "beam_cu.h"
 #include "beamline.h"

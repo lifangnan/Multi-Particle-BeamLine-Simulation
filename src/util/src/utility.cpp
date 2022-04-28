@@ -141,7 +141,7 @@ std::vector<std::string> Split(std::string r_line)
   std::string delimiter = " ";
   size_t pos = 0;
   std::string token;
-  uint cnt = 0;
+  unsigned int cnt = 0;
   while((pos = tmp.find(delimiter)) != std::string::npos)
   {
     token = tmp.substr(0, pos);

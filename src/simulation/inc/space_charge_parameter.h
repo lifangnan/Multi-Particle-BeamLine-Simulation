@@ -3,7 +3,7 @@
 
 struct SpaceChargeParam
 {
-  uint nx, ny, nz;          // scheff sizes
+  unsigned int nx, ny, nz;          // scheff sizes
 };
 
 struct ScheffMeshSize

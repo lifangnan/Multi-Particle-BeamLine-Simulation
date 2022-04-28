@@ -10,6 +10,8 @@
 #include "sql_utility.h" 
 #include "utility.h" 
 
+// #pragma comment (lib,"sqlite3.lib"）
+
 bool SQLCheck(int r_status, std::string r_op, char* r_err) 
 {
   if(r_status != SQLITE_OK)
