@@ -33,7 +33,7 @@ space_charge.cu
 
 py_wrapper:
 -I D:\ProgramFiles\anaconda2022\Lib\site-packages\numpy\core\include\numpy
-nvcc -c wrap_beam.cpp -o ../obj/wrap_beam.o -I ../inc/ -I ../../beam/inc/ -I ../../pywrapper/inc/ -I D:\ProgramFiles\anaconda2022\include\ -I ../../beamline/inc/ -I ../../util/inc/ -I D:\ProgramFiles\anaconda2022\Lib\site-packages\numpy\core\include\numpy -I D:\ProgramFiles\anaconda2022\Library\include
+nvcc -c wrap_beam.cpp -o ../obj/wrap_beam.o -I ../inc/ -I ../../beam/inc/ -I ../../pywrapper/inc/ -I ../../server/inc -I D:\ProgramFiles\anaconda2022\include\ -I ../../beamline/inc/ -I ../../util/inc/ -I D:\ProgramFiles\anaconda2022\Lib\site-packages\numpy\core\include\numpy -I D:\ProgramFiles\anaconda2022\Library\include
 hpsim_module 未编译
 wrap_beam
 wrap_beamline
