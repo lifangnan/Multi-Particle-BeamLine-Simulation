@@ -196,6 +196,13 @@ void SimulationEngine::Visit(Quad* r_quad)
   SimulateQuad(r_quad);
 }
 
+
+// for new element
+void SimulationEngine::Visit(Solenoid* r_Solenoid)
+{
+  SimulateSolenoid(r_Solenoid);
+}
+
 /*!
  * \brief Implementation of the visitor pattern.
  *

@@ -261,6 +261,33 @@ void Quad::Accept(Visitor* r_visitor)
   r_visitor->Visit(this);
 }
 
+
+// for new element
+Solenoid::Solenoid(std::string r_name) : BeamLineElement(r_name, "Solenoid"),
+  field_(0.0)
+{
+}
+
+/*!
+ * \brief Print parameters.
+ */
+void Solenoid::Print() const
+{
+  std::cout << GetName() << ": " << GetType() << ", length = " << GetLength() 
+    << ", aper = " << GetAperture() << ", Field = " << GetField()
+    << ", monitor = " << (IsMonitorOn()? "on" : "off")<< std::endl;
+}
+
+/*!
+ * \brief Implemention of the visitor pattern.
+ * \param r_visitor Pointer to a visitor
+ */
+void Solenoid::Accept(Visitor* r_visitor)
+{
+  r_visitor->Visit(this);
+}
+
+
 /*!
  * \brief Constructor. BeamLineElement type = "RFGap-DTL" or "RFGap-CCL".
  * \param r_name Name of the RF gap 

@@ -16,6 +16,7 @@ depend upon them.
 import sys
 import os
 from types import NoneType
+import ctypes
 # add import paths 
 par_dir = os.path.abspath(os.path.pardir)
 sys.path.append(par_dir)
@@ -26,6 +27,7 @@ sys.path.append(pkg_dir)
 
 #import various packages
 import HPSim as HPSim
+# HPSim = ctypes.CDLL("./bin/HPSim.dll")
 import numpy as np
 from mpl_toolkits.mplot3d import Axes3D
 from matplotlib.collections import PolyCollection

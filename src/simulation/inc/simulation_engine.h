@@ -50,6 +50,8 @@ private:
   void Visit(Diagnostics*);
   void Visit(Drift*);
   void Visit(Quad*);
+  // for new element
+  void Visit(Solenoid*);
   void Visit(RFGap*);
   void Visit(Rotation*);
   void Visit(SpaceChargeCompensation*);

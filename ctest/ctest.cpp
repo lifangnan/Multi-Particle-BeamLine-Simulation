@@ -67,6 +67,8 @@ int main(){
     beam->SaveInitialBeam();
     beam->RestoreInitialBeam();
 
+    beam->PrintToFile("initbeam","message");
+
     SetGPU(0);
 
     BeamLine beamline = BeamLine();

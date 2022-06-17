@@ -132,7 +132,7 @@ void Beam::AllocateBeam(uint r_num, double r_mass, double r_charge,
   charge = r_charge;
   current = r_current;
   CreateBeamOnDevice(this);
-  SetNumThreadsPerBlock(256);
+  SetNumThreadsPerBlock(1024);
   init_done = true;
 }
 

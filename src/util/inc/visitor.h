@@ -14,6 +14,7 @@ public:
   virtual void Visit(Drift*) = 0;  
   virtual void Visit(Rotation*) = 0;  
   virtual void Visit(Quad*) = 0;
+  virtual void Visit(Solenoid*) = 0;
   virtual void Visit(RFGap*) = 0;  
   virtual void Visit(SpaceChargeCompensation*) = 0;  
   virtual void Visit(Steerer*) = 0;  

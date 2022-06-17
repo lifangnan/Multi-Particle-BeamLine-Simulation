@@ -166,6 +166,20 @@ private:
   double gradient_;
 };
 
+// new element solenoid
+class Solenoid : public BeamLineElement
+{
+public:
+  Solenoid(std::string); // type_ = "Solenoid"
+  double GetField() const;
+  void SetField(double); 
+  void Print() const;
+  void Accept(Visitor*);
+private:
+  //! Magnet field in T
+  double field_;
+};
+
 class RFGap: public BeamLineElement
 {
 public:
@@ -624,6 +638,20 @@ inline
 void Quad::SetGradient(double r_grad) 
 {
   gradient_ = r_grad;
+}
+
+
+// for new element
+inline
+double Solenoid::GetField() const
+{
+  return field_;
+}
+
+inline
+void Solenoid::SetField(double mag_field)
+{
+  field_ = mag_field;
 }
 
 /*!

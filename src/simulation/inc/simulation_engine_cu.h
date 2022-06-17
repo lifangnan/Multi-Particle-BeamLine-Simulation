@@ -17,6 +17,7 @@ extern "C"
   void SimulateDipole(Dipole*);
   void SimulateDrift(Drift*);
   void SimulateQuad(Quad*);
+  void SimulateSolenoid(Solenoid*);
   void SimulateDTLRFGap(RFGap*);
   void SimulateCCLRFGap(RFGap*);
   void SimulateRotation(Rotation*);

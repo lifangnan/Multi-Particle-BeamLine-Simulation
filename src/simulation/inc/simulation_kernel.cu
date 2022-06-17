@@ -219,6 +219,71 @@ void SimulateHalfQuadKernel(double* r_x, double* r_y, double* r_phi,
   } // while
 }
 
+
+// for new element
+__global__ 
+void SimulateHalfSolenoidKernel(double* r_x, double* r_y, double* r_phi, 
+  double* r_xp, double* r_yp, double* r_w, uint* r_loss, double r_length, 
+  double r_aper, double r_field, uint r_elem_indx)
+{
+  double aper2 = r_aper;
+  aper2 *= aper2;
+  uint index = blockIdx.x * blockDim.x + threadIdx.x;
+  uint stride = blockDim.x * gridDim.x;
+  // double qg = r_field * d_const.charge;
+  double k_up = d_const.charge * CLIGHT * r_field;
+
+  while(index < d_const.num_particle)
+  {
+    if(r_loss[index] == 0)
+    {
+      double x = r_x[index];
+      double y = r_y[index];
+      double xp = r_xp[index];
+      double yp = r_yp[index];
+      double phi = r_phi[index];
+      double w = r_w[index];
+
+      double gamma = w / d_const.mass + 1.0; 
+      double beta = std::sqrt(1.0 - 1.0 / (gamma * gamma));
+      double k = k_up / 2.0 / d_const.mass / beta / gamma;
+      double Phi = r_length * k;
+
+      double cosPhi = cos(Phi);
+      double sinPhi = sin(Phi);
+      // if( index%1000 == 1){
+      //   printf("%f, %f, %f\n", Phi, cosPhi, sinPhi);
+      // }
+      double coscos = cosPhi * cosPhi;
+      double sinsin = sinPhi * sinPhi;
+      double sincos = sinPhi * cosPhi;
+
+      r_x[index] = coscos * x + sincos/k * xp + sincos * y + sinsin/k * yp;
+      r_xp[index] = -k*sincos * x + coscos * xp - k*sinsin *y + sincos * yp;
+      r_y[index] = -sincos * x - sinsin/k * xp + coscos * y + sincos/k * yp;
+      r_yp[index] = k*sinsin * x - sincos * xp - k*sincos *y + coscos * yp;
+
+      x = r_x[index];
+      y = r_y[index];
+      xp = r_xp[index];
+      yp = r_yp[index];
+
+    // at the center & the end of the quad, check for loss
+      if(aper2 != 0 && x * x + y * y > aper2)
+        r_loss[index] = r_elem_indx;
+      else // if not lost, then check phase 
+      {
+        double gm1 = w / d_const.mass;
+        double bt = sqrt(gm1 * (gm1 + 2.0)) / (gm1 + 1.0);
+	// absolute phase
+        r_phi[index] += TWOPI * r_length * 0.5 / (d_wavelen * bt); 
+      }// if aper2
+    } // if loss
+    index += stride;
+  } // while
+}
+
+
 __global__
 void UpdateWaveLengthKernel(double r_freq)
 {

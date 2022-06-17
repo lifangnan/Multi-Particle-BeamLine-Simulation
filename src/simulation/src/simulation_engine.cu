@@ -162,6 +162,25 @@ void SimulateQuad(Quad* r_quad)
     r_quad->GetGradient(), cur_id);
 }
 
+
+// for new element
+void SimulateSolenoid(Solenoid* r_Solenoid)
+{
+  SimulateHalfSolenoidKernel<<<grid_size, blck_size>>>(beam_tmp->x, 
+    beam_tmp->y, beam_tmp->phi, beam_tmp->xp, beam_tmp->yp, beam_tmp->w, 
+    beam_tmp->loss, r_Solenoid->GetLength(), r_Solenoid->GetAperture(), 
+    r_Solenoid->GetField(), cur_id);
+  // if(param->graphics_on && r_Solenoid->IsMonitorOn())
+  //   Update2DPlotData();
+  // if(param->space_charge_on)
+  //   spch_tmp->Start(beam_tmp, r_Solenoid->GetLength()); 
+  // SimulateHalfSolenoidKernel<<<grid_size, blck_size / 2>>>(beam_tmp->x, 
+  //   beam_tmp->y, beam_tmp->phi, beam_tmp->xp, beam_tmp->yp, beam_tmp->w, 
+  //   beam_tmp->loss, r_Solenoid->GetLength(), r_Solenoid->GetAperture(), 
+  //   r_Solenoid->GetField(), cur_id);
+}
+
+
 void PrepSimulateRFGap(RFGap* r_gap)
 {
   cudaMemcpyAsync(rfparam, r_gap->GetParametersOnDevice(), 

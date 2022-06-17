@@ -18,14 +18,17 @@ sqlite3.h -I D:\ProgramFiles\anaconda2022\Library\include
 beam目录：
 beam.cpp
 beam.cu
+nvcc -c beam.cpp -o ../obj/beam.obj -I ../inc/ -I ../../pywrapper/inc/ -I D:\ProgramFiles\anaconda2022\include\ -I ../../util/inc/
+nvcc -c beam.cu -o ../obj/beam.cu.obj -I ../inc/ -I ../../pywrapper/inc/ -I D:\ProgramFiles\anaconda2022\include\ -I ../../util/inc/
 
 beamline目录：
+nvcc -c beamline_element.cpp -o ../obj/beamline_element.o -I ../inc/ -I ../../beam/inc/ -I ../../pywrapper/inc/ -I D:\ProgramFiles\anaconda2022\include\ -I ../../util/inc/
 beamline.cpp
 beamline_element.cpp
 init.cpp
 
 simulation目录：
-nvcc -c init.cpp -o ../obj/init.o -I ../inc/ -I ../../beam/inc/ -I ../../pywrapper/inc/ -I D:\ProgramFiles\anaconda2022\include\ -I ../../beamline/inc/ -I ../../util/inc/ -L C:\Users\admin\Downloads\sqlite -I C:\Users\admin\Downloads\sqlite
+nvcc -c simulation_engine.cu -o ../obj/simulation_engine.cu.obj -I ../inc/ -I ../../beam/inc/ -I ../../pywrapper/inc/ -I D:\ProgramFiles\anaconda2022\include\ -I ../../beamline/inc/ -I ../../util/inc/
 simulation_engine.cpp
 simulation_engine.cu
 space_charge.cpp
